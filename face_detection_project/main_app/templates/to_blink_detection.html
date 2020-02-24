@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Lacquer&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        *{
+            padding:0px;
+            margin:0px;
+        }
+        .cover{
+            padding: 1vw;
+        }
+        .image_upload{
+            display: inline-block;
+            border: 1px dotted blue;
+            padding: 1vw;
+        }
+        .video_upload{
+            display: inline-block;
+            border: 1px dotted blue;
+            padding: 1vw;
+        }
+        input{
+            border: 2px dotted white;
+        }
+        .image_upload{
+            display: inline-block;
+            border: 2px dotted white;
+            padding: 1vw;
+        }
+        .video_upload{
+            display: inline-block;
+            border: 2px dotted white;
+            padding: 1vw;
+        }
+
+        h1, h3, h4, form, a{
+            font-family: 'Lacquer';
+            color: white;
+            text-align: center;
+        }
+        td{
+            font-size: 30px;
+            font-family: 'Lacquer';
+            color: white;
+            padding: 1vw;
+        }
+        table{
+            vertical-align: middle;
+            position: relative;
+            border: 2px dotted white;
+            border-collapse: collapse;
+        }
+        tr,td{
+            border: 2px dotted white;
+        }
+        .cover{
+            padding: 3vw;
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            background-color: black;
+        }
+        span{
+            color: lightskyblue;
+            font-weight: bold;
+            font-size: 45px;
+        }
+        .format{
+            padding: 10vw 28vw;
+        }
+    </style>
+</head>
+<body>
+    <div class="cover">
+    <h1>④　How many blinks</h1>
+    <h3>Upload a video to count blinks</h3>
+    <div class="row">
+    <!-- <div class="col-5">
+        <h4>Image</h4>
+        
+        <form action="/part_detection" method='post' enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- <input type="file" name="image">
+            <input type="url" name="image"> -->
+            {{form}}
+            <input type="submit" value="Submit Image">
+        </form>
+    </div> -->
+    <div class="c0l-5">
+        <h4>Video</h4>
+        <form action="/blink_detection/video" method='post' enctype="multipart/form-data">
+            {% csrf_token %}
+                {{form}}
+            <input type="submit" value="Submit Video">
+        </form>
+    </div>
+    </div>
+    <a class="btn btn-outline-danger" href="/">Back to Home</a>
+</div>
+</body>
+</html>

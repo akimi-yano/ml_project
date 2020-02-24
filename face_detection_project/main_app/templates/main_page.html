@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Lacquer&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        *{
+            padding:0px;
+            margin:0px;
+        }
+        h1, h3, a{
+            font-family: 'Lacquer';
+            color: white;
+            text-align: center;
+        }
+        td{
+            font-size: 30px;
+            font-family: 'Lacquer';
+            color: white;
+            padding: 1vw;
+        }
+        table{
+            vertical-align: middle;
+            position: relative;
+            border: 2px dotted white;
+            border-collapse: collapse;
+        }
+        tr,td{
+            border: 2px dotted white;
+        }
+        .cover{
+            padding: 3vw;
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            background-color: black;
+        }
+
+        span{
+
+        animation: flash 4s linear infinite;
+        margin:20px;
+        font-size:50px;
+        font-weight: bold;
+        }
+
+        @keyframes flash {
+        0%,35%,60%,100%{
+            opacity: 0;
+        }
+
+        25%{
+            opacity: 1;
+            color:#7fff00;
+        }
+        
+        50%{
+            opacity: 1;
+            color:#0091EA;
+        }
+        
+        75%{
+            opacity: 1;
+            color:#ff1493;
+        }
+        
+        .format{
+            padding: 10vw 20vw;
+        }
+    
+
+    </style>
+
+</head>
+<body>
+    <div class="cover">
+        <h1><span>Machine Learning</span> Face Recognition Lab</h1>
+        <h3>Let's upload an image to test if computer can detect: </h3>
+        <div class="format">
+            <table>
+                <tr>
+                    <td>①　If there is a human face</td>
+                    <td><a class="btn btn-danger" href="/to_face_detection/image">image</a></td>
+                    <td><a class="btn btn-primary" href="">video</a></td>
+                </tr>
+                <tr>
+                    <td>②　Shape of a face</td>
+                    <td><a class="btn btn-danger" href="/to_shape_detection/image">image</a></td>
+                    <td><a class="btn btn-primary" href="">video</a></td>
+                    <td><a class="btn btn-success" href="/to_shape_detection/realtime">realtime</a></td>
+                </tr>
+                <tr>
+                    <td>③　Which part of a face</td>
+                    <td><a class="btn btn-danger" href="/to_part_detection/image">image</a></td>
+                    <td><a class="btn btn-primary" href="">video</a></td>
+                </tr>
+                <tr>
+                    <td>④　How many blinks</td>
+                    <td></td>
+                    <td><a class="btn btn-primary" href="/to_blink_detection/video">video</a></td>
+                </tr>
+            </table>
+        </div>
+        <a class="btn btn-outline-danger" href="/citations">Technologies</a>
+    </div>
+
+</body>
+
+</html>

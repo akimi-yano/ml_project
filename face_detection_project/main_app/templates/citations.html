@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Lacquer&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/c3e68e9bd6.js" crossorigin="anonymous"></script>
+    <style>
+        *{
+            padding:0px;
+            margin:0px;
+        }
+        .fa-star{
+            color: yellow;
+            margin: 13px;
+        }
+        input{
+            border: 2px dotted white;
+        }
+        .image_upload{
+            display: inline-block;
+            border: 2px dotted white;
+            padding: 1vw;
+        }
+        .video_upload{
+            display: inline-block;
+            border: 2px dotted white;
+            padding: 1vw;
+        }
+
+        h1, h3, h4, form, a{
+            font-family: 'Lacquer';
+            color: white;
+            text-align: center;
+        }
+        ul, li{
+            font-size: 30px;
+            font-family: 'Lacquer';
+            color: white;
+            padding: 1vw;
+        }
+        .bubble08{
+            font-family: 'Lacquer';
+        }
+        table{
+            vertical-align: middle;
+            position: relative;
+            border: 2px dotted white;
+            border-collapse: collapse;
+        }
+        tr,td{
+            border: 2px dotted white;
+        }
+        .cover{
+            padding: 3vw;
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            background-color: black;
+        }
+        span{
+            color: lightskyblue;
+            font-weight: bold;
+            font-size: 45px;
+        }
+        .format{
+            padding: 10vw 28vw;
+        }
+        .bubble08 {
+            position: relative;
+            display: inline-block;
+            width: 200px; 
+            text-align: center;
+            padding: 25px;
+            background-color: #FFF;
+            border: #000 solid 4px;
+            border-radius: 40px;
+        }
+        .bubble08:before {
+            content: '';
+            position: absolute;
+            display: block;
+            z-index: 1;
+            border-style: solid;
+            border-color: #FFF transparent;
+            border-width: 25px 25px 0 0;
+            bottom: -16px;
+            left: 50%;
+            margin-left: -10px;
+        }
+        .bubble08:after
+        {
+            content: '';
+            position: absolute;
+            display: block;
+            z-index: 0;
+            border-style: solid;
+            border-color: #000 transparent;
+            border-width: 25px 25px 0 0;
+            bottom: -25px;
+            left: 50%;
+            margin-left: -14px;
+        }
+        .fa-smile-beam{
+            color:black;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="cover">
+    <h1><i class="fas fa-star"></i>Technologies Applied<i class="fas fa-star"></i></h1>
+    <div class="bubble08" >Thank you - <i class="far fa-smile-beam"></i></div>
+    <ul>
+        <li>This guy</li>
+        <li>That guy</li>
+    </ul>
+    
+    <a class="btn btn-outline-danger" href="/">Back to Home</a>
+    </div>
+</body>
+</html>
