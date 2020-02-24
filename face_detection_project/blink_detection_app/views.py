@@ -204,6 +204,7 @@ def blink(request):
     vs.stop()
     writer.release()
     os.remove('outpy.avi')
+    os.remove(tmp_file)
     return response
 
     # cv2.imwrite('Frame', frame)
