@@ -47,8 +47,9 @@
             font-weight: bold;
             font-size: 45px;
         }
-        .format{
-            padding: 10vw 28vw;
+
+        form{
+            display: block;
         }
     </style>
 </head>
@@ -56,30 +57,15 @@
     <div class="cover">
     <h1>①　If there is a human face</h1>
     <h3>Upload an image to test if there is a face</h3>
-    <div class="row">
-    <div class="col-6">
+    
+    <div class="format">
         <h4>Image</h4>
-        
-        <form action="/face_detection/detect" method='post' enctype="multipart/form-data">
+        <form action="/face_detection/image/detect" method='post' enctype="multipart/form-data">
             {% csrf_token %}
-            <!-- <input type="file" name="image">
-            <input type="url" name="image"> -->
             {{form}}
             <input type="submit" value="Submit Image">
         </form>
     </div>
-    <div class="col-6">
-        <h4>Video</h4>
-        <form>
-            {% csrf_token %}
-            <input type="file" name="video">
-            <input type="url" name="video">
-
-            <input type="submit" value="Submit Video">
-        </form>
-    </div>
-   
-</div>
 <a class="btn btn-outline-danger" href="/">Back to Home</a>
 </div>
 

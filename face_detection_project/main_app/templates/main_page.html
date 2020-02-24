@@ -6,16 +6,20 @@
     <title>Document</title>
     <link href="https://fonts.googleapis.com/css?family=Lacquer&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/c3e68e9bd6.js" crossorigin="anonymous"></script>
+
     <style>
         *{
             padding:0px;
             margin:0px;
         }
+        
         h1, h3, a{
             font-family: 'Lacquer';
             color: white;
             text-align: center;
         }
+
         td{
             font-size: 30px;
             font-family: 'Lacquer';
@@ -38,7 +42,26 @@
             position: absolute;
             background-color: black;
         }
-
+        .fa-laugh{
+            color: palevioletred;
+            margin: 1vw;
+            animation: roll 3s infinite;
+            font-size: 50px;
+        }
+        @keyframes roll {
+            0% {
+                transform: rotate(0);
+            }
+            25% {
+                transform: rotate(360deg);
+            }
+            50% {
+                transform: rotate(-0);
+            }
+            75% {
+                transform: rotate(-360deg);
+            }
+        }
         span{
 
         animation: flash 4s linear infinite;
@@ -52,50 +75,79 @@
             opacity: 0;
         }
 
-        25%{
-            opacity: 1;
-            color:#7fff00;
+            25%{
+                opacity: 1;
+                color:#7fff00;
+            }
+            
+            50%{
+                opacity: 1;
+                color:#0091EA;
+            }
+            
+            75%{
+                opacity: 1;
+                color:#ff1493;
+            }
         }
-        
-        50%{
-            opacity: 1;
-            color:#0091EA;
-        }
-        
-        75%{
-            opacity: 1;
-            color:#ff1493;
-        }
-        
         .format{
-            padding: 10vw 20vw;
+            padding: 5vh 10vw 5vh 10vw;
+            margin: auto;
+            display: flex;
+            justify-content: space-around;
+            
         }
+        .fa-exclamation-triangle{
+            color: yellow;
+            margin: 1vw;
+            animation: skew 4s infinite;
+        }
+        @keyframes skew {
+            
+            20% {
+                transform: skewX(-20deg);
+            }
+            40% {
+                transform: skewX(20deg);
+            }
+            60% {
+                transform: skewX(-20deg);
+            }
+            80% {
+                transform: skewX(20deg);
+            }
     
+        }
+        p{
+            color:yellow;
+            font-family: 'Lacquer';
+            text-align: center;
+        }
 
     </style>
 
 </head>
 <body>
     <div class="cover">
-        <h1><span>Machine Learning</span> Face Recognition Lab</h1>
-        <h3>Let's upload an image to test if computer can detect: </h3>
+        <h1><span>Machine Learning</span> Face<i class="far fa-laugh"></i>Recognition Lab</h1>
+        <h3>Let's upload an image or video to test if computer can detect: </h3>
         <div class="format">
+        
             <table>
                 <tr>
                     <td>①　If there is a human face</td>
                     <td><a class="btn btn-danger" href="/to_face_detection/image">image</a></td>
-                    <td><a class="btn btn-primary" href="">video</a></td>
+                    <td><a class="btn btn-primary" href="/to_face_detection/video">video</a></td>
                 </tr>
                 <tr>
                     <td>②　Shape of a face</td>
                     <td><a class="btn btn-danger" href="/to_shape_detection/image">image</a></td>
-                    <td><a class="btn btn-primary" href="">video</a></td>
-                    <td><a class="btn btn-success" href="/to_shape_detection/realtime">realtime</a></td>
+                    <td><a class="btn btn-primary" href="/to_shape_detection/video">video</a></td>
                 </tr>
                 <tr>
                     <td>③　Which part of a face</td>
                     <td><a class="btn btn-danger" href="/to_part_detection/image">image</a></td>
-                    <td><a class="btn btn-primary" href="">video</a></td>
+                    <td><a class="btn btn-primary" href="/to_part_detection/video">video</a></td>
                 </tr>
                 <tr>
                     <td>④　How many blinks</td>
@@ -103,10 +155,14 @@
                     <td><a class="btn btn-primary" href="/to_blink_detection/video">video</a></td>
                 </tr>
             </table>
+        
         </div>
+        
+        <p><i class="fas fa-exclamation-triangle"></i>Uploaded image or video will not be saved in our database</p>
         <a class="btn btn-outline-danger" href="/citations">Technologies</a>
+    
     </div>
-
+    
 </body>
 
 </html>

@@ -50,7 +50,7 @@ def eye_aspect_ratio(eye):
 # define two constants, one for the eye aspect ratio to indicate
 # blink and then a second constant for the number of consecutive
 # frames the eye must be below the threshold
-def blink(request):
+def blink_video(request):
     EYE_AR_THRESH = 0.3
     EYE_AR_CONSEC_FRAMES = 3
 
@@ -132,8 +132,8 @@ def blink(request):
             # visualize each of the eyes
             leftEyeHull = cv2.convexHull(leftEye)
             rightEyeHull = cv2.convexHull(rightEye)
-            cv2.drawContours(frame, [leftEyeHull], -1, (0, 255, 0), 1)
-            cv2.drawContours(frame, [rightEyeHull], -1, (0, 255, 0), 1)
+            cv2.drawContours(frame, [leftEyeHull], -1, (255, 0, 255), 1)
+            cv2.drawContours(frame, [rightEyeHull], -1, (255, 0, 255), 1)
 
             # check to see if the eye aspect ratio is below the blink
             # threshold, and if so, increment the blink frame counter
@@ -154,9 +154,9 @@ def blink(request):
             # draw the total number of blinks on the frame along with
             # the computed eye aspect ratio for the frame
             cv2.putText(frame, "Blinks: {}".format(TOTAL), (10, 30),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+                cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
             cv2.putText(frame, "EAR: {:.2f}".format(ear), (300, 30),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+                cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
 
         # # show the frame
         # cv2.imshow("Frame", frame)

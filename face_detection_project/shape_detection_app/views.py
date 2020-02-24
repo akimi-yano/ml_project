@@ -10,7 +10,7 @@ import dlib
 import cv2
 import os
 
-def shape(request):
+def shape_image(request):
 	# construct the argument parser and parse the arguments
 	# ap = argparse.ArgumentParser()
 	# ap.add_argument("-p", "--shape-predictor", required=True,
@@ -91,3 +91,7 @@ def _grab_image(path=None, stream=None, url=None):
 
 	# return the image
 	return image
+
+
+def shape_video(request):
+    pass

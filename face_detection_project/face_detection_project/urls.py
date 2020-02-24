@@ -18,10 +18,10 @@ from django.urls import path, include
 
 urlpatterns = [
     path('', include('main_app.urls')),
-    path('face_detection/image', include('face_detection_app.urls')),
-    path('shape_detection/image', include('shape_detection_app.urls')),
-    path('part_detection/image', include('part_detection_app.urls')),
-    path('blink_detection/video', include('blink_detection_app.urls')),
-    path('shape_detection/realtime', include('realtime.urls')),
+    path('face_detection', include('face_detection_app.urls')),
+    path('shape_detection', include('shape_detection_app.urls')),
+    path('part_detection', include('part_detection_app.urls')),
+    path('blink_detection', include('blink_detection_app.urls')),
+    path('shape_detection', include('realtime.urls')),
     # path('admin/', admin.site.urls),
 ]

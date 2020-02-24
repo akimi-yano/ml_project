@@ -15,7 +15,30 @@
         .fa-star{
             color: yellow;
             margin: 13px;
+            animation: rotate_stars 7s infinite;
         }
+        @keyframes rotate_stars{
+        
+            0% {
+                transform: rotateY(360deg);
+            }
+            20% {
+                transform: rotateY(-360deg);
+            }
+            40% {
+                transform: rotateY(360deg);
+            }
+            60% {
+                transform: rotateY(-360deg);
+            }
+            80% {
+                transform: rotateY(360deg);
+            }
+            100% {
+                transform: rotateY(-360deg);
+            }
+        }
+        
         input{
             border: 2px dotted white;
         }
@@ -106,7 +129,6 @@
         .fa-smile-beam{
             color:black;
         }
-
     </style>
 </head>
 

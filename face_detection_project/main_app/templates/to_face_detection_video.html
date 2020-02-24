@@ -14,30 +14,11 @@
         .cover{
             padding: 1vw;
         }
-        .image_upload{
-            display: inline-block;
-            border: 1px dotted blue;
-            padding: 1vw;
-        }
-        .video_upload{
-            display: inline-block;
-            border: 1px dotted blue;
-            padding: 1vw;
-        }
+
+
         input{
             border: 2px dotted white;
         }
-        .image_upload{
-            display: inline-block;
-            border: 2px dotted white;
-            padding: 1vw;
-        }
-        .video_upload{
-            display: inline-block;
-            border: 2px dotted white;
-            padding: 1vw;
-        }
-
         h1, h3, h4, form, a{
             font-family: 'Lacquer';
             color: white;
@@ -70,25 +51,23 @@
             font-weight: bold;
             font-size: 45px;
         }
+
         form{
             display: block;
         }
     </style>
-    </style>
 </head>
 <body>
     <div class="cover">
-    <h1>②　Shape of a face</h1>
-    <h3>Upload an image to detect the shape of a face</h3>
+    <h1>①　If there is a human face</h1>
+    <h3>Upload a video to test if there is a face</h3>
+
     <div class="format">
-        <h4>Image</h4>
-        
-        <form action="/shape_detection" method='post' enctype="multipart/form-data">
+        <h4>Video</h4>
+        <form action="/face_detection/video/detect" method='post' enctype="multipart/form-data">
             {% csrf_token %}
-            <!-- <input type="file" name="image">
-            <input type="url" name="image"> -->
-            {{form}}
-            <input type="submit" value="Submit Image">
+                {{form}}
+            <input type="submit" value="Submit Video">
         </form>
     </div>
     <a class="btn btn-outline-danger" href="/">Back to Home</a>

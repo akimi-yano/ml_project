@@ -2,5 +2,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.blink)
+    path('/video', views.blink_video)
 ]

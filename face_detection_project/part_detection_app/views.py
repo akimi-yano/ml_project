@@ -9,7 +9,7 @@ import cv2
 import os
 
 
-def part(request):
+def part_image(request):
 
     # construct the argument parser and parse the arguments
     # ap = argparse.ArgumentParser()
@@ -99,3 +99,6 @@ def _grab_image(path=None, stream=None, url=None):
 
 	# return the image
 	return image
+
+def part_video(request):
+    pass
