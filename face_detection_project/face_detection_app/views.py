@@ -156,7 +156,7 @@ def detect_video(request):
             cv2.rectangle(frame, (startX, startY), (endX, endY), (0, 255, 0), 2)
             # cv2.drawContours(frame, [leftEyeHull], -1, (255, 0, 255), 1)
             # cv2.drawContours(frame, [rightEyeHull], -1, (255, 0, 255), 1)
-
+        
         # cv2.imwrite('temp.jpg', image)
         # response = FileResponse(open('temp.jpg', 'rb'))
         # os.remove('temp.jpg')

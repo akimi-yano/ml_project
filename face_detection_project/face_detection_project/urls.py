@@ -23,5 +23,6 @@ urlpatterns = [
     path('part_detection', include('part_detection_app.urls')),
     path('blink_detection', include('blink_detection_app.urls')),
     path('shape_detection', include('realtime.urls')),
+    path('wink_detection', include('wink_detection_app.urls'))
     # path('admin/', admin.site.urls),
 ]

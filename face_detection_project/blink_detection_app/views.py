@@ -147,6 +147,7 @@ def blink_video(request):
                 # then increment the total number of blinks
                 if COUNTER >= EYE_AR_CONSEC_FRAMES:
                     TOTAL += 1
+                # set star countdown variable to 10 frames
 
                 # reset the eye frame counter
                 COUNTER = 0
