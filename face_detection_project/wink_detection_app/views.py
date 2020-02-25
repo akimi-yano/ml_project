@@ -96,6 +96,9 @@ def wink_video(request):
     # loop over frames from the video stream
     fourcc = cv2.VideoWriter_fourcc("M", "J", "P", "G")
     writer = None
+    right_mark = None
+    left_mark = None
+    middle_mark = None
     while True:
         # if this is a file video stream, then we need to check if
         # there any more frames left in the buffer to process
@@ -179,34 +182,51 @@ def wink_video(request):
 
             # draw the total number of blinks on the frame along with
             # the computed eye aspect ratio for the frame
-            cv2.putText(frame, "Blinks: {}".format(TOTAL), (10, 30),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
-            cv2.putText(frame, "EAR: {:.2f}".format(ear), (300, 30),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
-            cv2.putText(frame, "RightEAR: {:.2f}".format(rightEAR), (10, 200),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
-            cv2.putText(frame, "LeftEAR: {:.2f}".format(leftEAR), (300, 200),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
+            # cv2.putText(frame, "Blinks: {}".format(TOTAL), (10, 30),
+            #     cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
+            # cv2.putText(frame, "EAR: {:.2f}".format(ear), (300, 30),
+            #     cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
+            # cv2.putText(frame, "RightEAR: {:.2f}".format(rightEAR), (10, 200),
+            #     cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
+            # cv2.putText(frame, "LeftEAR: {:.2f}".format(leftEAR), (300, 200),
+            #     cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
             if BLINK_SHOW > 0:
-                cv2.putText(frame, "BLINKING!", (150, 30),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
+                # cv2.putText(frame, "BLINKING!", (150, 30),
+                #     cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
+                y1, y2 = 20, 20 + middle_mark.shape[0]
+                x1, x2 = 190, 190 + middle_mark.shape[1]
+                for c in range(0, 3):
+                    frame[y1:y2, x1:x2, c] = (middle_mark_alpha_s * middle_mark[:, :, c] +
+                                              middle_mark_alpha_l * frame[y1:y2, x1:x2, c])
                 BLINK_SHOW -= 1
             if LEFTWINK_SHOW > 0:
-                cv2.putText(frame, "LEFT WINK!", (300, 100),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
-                cv2.circle(frame, (400,75), 30, (0,255,255), -1)
+                # cv2.putText(frame, "LEFT WINK!", (300, 100),
+                # cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
+                # cv2.circle(frame, (400,75), 30, (0,255,255), -1)
+                y1, y2 = 100, 100 + left_mark.shape[0]
+                x1, x2 = 350, 350 + left_mark.shape[1]
+                for c in range(0, 3):
+                    frame[y1:y2, x1:x2, c] = (left_mark_alpha_s * left_mark[:, :, c] +
+                                              left_mark_alpha_l * frame[y1:y2, x1:x2, c])
+                    
                 LEFTWINK_SHOW -= 1
             if RIGHTWINK_SHOW > 0:
-                cv2.putText(frame, "RIGHT WINK!", (10, 100),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
-                p1 = (45, 50) 
-                p2 = (105, 50) 
-                p3 = (75, 100)
-                cv2.circle(frame, p1, 2, (0,0,255), -1)
-                cv2.circle(frame, p2, 2, (0,0,255), -1)
-                cv2.circle(frame, p3, 2, (0,0,255), -1)
-                triangle_cnt = np.array([p1, p2, p3])
-                cv2.drawContours(frame, [triangle_cnt], 0, (0,0,255), -1)
+                # cv2.putText(frame, "RIGHT WINK!", (10, 100),
+                # cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
+                # p1 = (45, 50) 
+                # p2 = (105, 50) 
+                # p3 = (75, 100)
+                # cv2.circle(frame, p1, 2, (0,0,255), -1)
+                # cv2.circle(frame, p2, 2, (0,0,255), -1)
+                # cv2.circle(frame, p3, 2, (0,0,255), -1)
+                # triangle_cnt = np.array([p1, p2, p3])
+                # cv2.drawContours(frame, [triangle_cnt], 0, (0,0,255), -1)
+                
+                y1, y2 = 100, 100 + right_mark.shape[0]
+                x1, x2 = 80, 80 + right_mark.shape[1]
+                for c in range(0, 3):
+                    frame[y1:y2, x1:x2, c] = (right_mark_alpha_s * right_mark[:, :, c] +
+                                              right_mark_alpha_l * frame[y1:y2, x1:x2, c])
                 RIGHTWINK_SHOW -= 1
                 
             #test
@@ -288,6 +308,17 @@ def wink_video(request):
             writer = cv2.VideoWriter("outpy.avi", fourcc, 30,
                 (w, h), True)
             zeros = np.zeros((h, w), dtype="uint8")
+            right_mark = cv2.imread('wink_detection_app/star.png', -1)
+            right_mark_alpha_s = right_mark[:, :, 3] / 255.0
+            right_mark_alpha_l = 1.0 - right_mark_alpha_s
+            
+            left_mark = cv2.imread('wink_detection_app/heart.png', -1)
+            left_mark_alpha_s = left_mark[:, :, 3] / 255.0
+            left_mark_alpha_l = 1.0 - left_mark_alpha_s
+            
+            middle_mark = cv2.imread('wink_detection_app/kinoko.png', -1)
+            middle_mark_alpha_s = middle_mark[:, :, 3] / 255.0
+            middle_mark_alpha_l = 1.0 - middle_mark_alpha_s
 
         # break the image into its RGB components, then construct the
         # RGB representation of each frame individually
