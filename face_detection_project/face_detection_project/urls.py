@@ -18,6 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('', include('main_app.urls')),
+    path('sleepiness_detection', include('sleepiness_detection_app.urls')),
     path('face_detection', include('face_detection_app.urls')),
     path('shape_detection', include('shape_detection_app.urls')),
     path('part_detection', include('part_detection_app.urls')),

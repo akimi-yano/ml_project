@@ -67,3 +67,10 @@ def to_wink_detection_video(request):
     }
     return render(request, "to_wink_detection_video.html", context)
 
+def to_sleepiness_detection_video(request):
+    form = UploadVideoForm()
+    context = {
+        "form": form
+    }
+    return render(request, "to_sleepiness_detection_video.html", context)
+

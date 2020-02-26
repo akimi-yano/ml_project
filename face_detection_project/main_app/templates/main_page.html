@@ -73,7 +73,7 @@
 
         .face {
             color: palevioletred;
-            margin: 1vw;
+            margin: 5px;
             animation: roll 3s infinite;
             width: 100px;
             height: 100px;
@@ -165,10 +165,7 @@
             }
         
         }
-        #particles-js{
-            z-index: 0;
-            position: relative;
-        }
+        
         .alert{
             font-family: 'Press Start 2P';
             color:palevioletred;
@@ -180,7 +177,10 @@
             text-align: center;
         }
 
-        
+        #particles-js{
+            z-index: 0;
+            position: relative;
+        }
         .particle, .particle > canvas { z-index: -1 !important; }
         /* ---- reset ---- */ 
         body{ margin:0; font:normal 75% Arial, Helvetica, sans-serif; } 
@@ -197,19 +197,33 @@
             display: block;
         }
         .camera{
-            width: 100px;
-            height: 75px;
+            width: 50px;
+            height: 35px;
         }
         .video_camera{
-            width: 110px;
-            height: 80px;
+            width: 60px;
+            height: 40px;
     
         }
         .tech{
-            width: 100px;
-            height: 85px;
+            width: 70px;
+            height: 75px;
         }
-
+        
+        td a{
+            background-color:transparent;
+            z-index:999;
+            width:100%;
+            height:100%;
+        }
+        td:hover {
+            background-color:white;
+        }
+        td a:hover{
+            width:100%;
+            height:100%;
+            filter:invert(1);
+        }
 
     </style>
 
@@ -219,8 +233,8 @@
 
 
     <div class="cover" id="particles-js">
-        <h1><span>Machine Learning</span> Face<img class="face" src="{% static 'images/face.png' %}" />Detector</h1>
-        <h3>Upload an image or video to test if computer can detect: </h3>
+        <h1><span>Machine Learning</span> Face<img class="face" src="{% static 'images/face.png' %}" />Recognition</h1>
+        <h3>Upload an image or video to detect: </h3>
 
         <div class="format">
 
@@ -242,38 +256,23 @@
                 </tr>
                 <tr>
                     <td>Blinks</td>
-                    <td></td>
+                    <td>N/A</td>
                     <td><a href="/to_blink_detection/video"><img class="video_camera" src="{% static 'images/video_camera.png' %}" /></a></td>
                 </tr>
                 <tr>
                     <td>Winks</td>
-                    <td></td>
+                    <td>N/A</td>
                     <td><a href="/to_wink_detection/video"><img class="video_camera" src="{% static 'images/video_camera.png' %}" /></a></td>
                 </tr>
                 <tr>
                     <td>Sleepiness</td>
-                    <td><a href=""><img class="camera" src="{% static 'images/camera.png' %}" /></a></td>
-                    <td><a href=""><img class="video_camera" src="{% static 'images/video_camera.png' %}" /></a></td>
-                </tr>
-                <tr>
-                    <td>Glasses</td>
-                    <td><a href=""><img class="camera" src="{% static 'images/camera.png' %}" /></a></td>
-                    <td><a href=""><img class="video_camera" src="{% static 'images/video_camera.png' %}" /></a></td>
-                </tr>
-                <tr>
-                    <td>Smiles</td>
-                    <td><a href=""><img class="camera" src="{% static 'images/camera.png' %}" /></a></td>
-                    <td><a href=""><img class="video_camera" src="{% static 'images/video_camera.png' %}" /></a></td>
-                </tr>
-                <tr>
-                    <td>Blink cycle</td> 
-                    <td><a href=""><img class="camera" src="{% static 'images/camera.png' %}" /></a></td>
-                    <td><a href=""><img class="video_camera" src="{% static 'images/video_camera.png' %}" /></a></td>
+                    <td>N/A</td>
+                    <td><a href="/to_sleepiness_detection/video"><img class="video_camera" src="{% static 'images/video_camera.png' %}" /></a></td>
                 </tr>
             </table> 
 
-        <div id="indent">
-        <p class="alert"><i class="fas fa-exclamation-triangle"></i>Uploaded image or video will not be saved in our database</p>
+        <div id="indent">   
+        
         <a href="/citations"><img class="tech" src="{% static 'images/tech.png' %}" /></a><p>Technologies</p>
         </div>
 </div> 

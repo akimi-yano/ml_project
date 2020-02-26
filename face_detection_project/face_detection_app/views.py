@@ -201,3 +201,4 @@ def detect_video(request):
     os.remove('outpy.avi')
     os.remove(tmp_file)
     return response
+

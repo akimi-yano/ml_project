@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'main_app',
     'realtime',
+    'sleepiness_detection_app',
     'wink_detection_app',
     'face_detection_app',
     'shape_detection_app',
