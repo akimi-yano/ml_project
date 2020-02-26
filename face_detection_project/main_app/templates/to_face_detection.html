@@ -8,23 +8,30 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+    {% load static %}
+    
     <style>
         *{
             padding:0px;
             margin:0px;
+            font-family: 'Press Start 2P';
         }
         input{
             border: 2px dotted white;
         }
 
         h1, h3, h4, form, a{
-            font-family: 'Lacquer';
+            font-family: 'Press Start 2P';
             color: white;
             text-align: center;
         }
+        h3{
+            font-size: 15px;
+        }
         td{
             font-size: 30px;
-            font-family: 'Lacquer';
+            font-family: 'Press Start 2P';
             color: white;
             padding: 1vw;
         }
@@ -57,6 +64,10 @@
             z-index: 100;
             position: relative;
         }
+        input{
+            height: 60px;
+            vertical-align: middle;
+        }
         .cover {
             padding: 3vw;
             width: 100vw;
@@ -88,23 +99,27 @@
         #stats, .count-particles{ -webkit-user-select: none; margin-top: 5px; margin-left: 5px; } 
         #stats{ border-radius: 3px 3px 0 0; overflow: hidden; } 
         .count-particles{ border-radius: 0 0 3px 3px; }
+        .home{
+            width: 60px;
+            height: 50px;
+        }
         
     </style>
 </head>
 <body>
     <div class="cover" id="particles-js">
-    <h1>①　If there is a human face</h1>
-    <h3>Upload an image to test if there is a face</h3>
+    <h1>Face Detection</h1>
+    <h3>Upload an image to see if computer can detect</h3>
+    <h3>whether there is a face</h3>
     
     <div class="format">
-        <h4>Image</h4>
         <form action="/face_detection/image/detect" method='post' enctype="multipart/form-data">
             {% csrf_token %}
             {{form}}
             <input type="submit" value="Submit Image">
         </form>
     </div>
-<a class="btn btn-outline-danger" href="/">Back to Home</a>
+<a class="btn btn-outline-danger" href="/"><img class="home" src="{% static 'images/home.png' %}" /></a>
 </div>
 <script>
     particlesJS("particles-js", 

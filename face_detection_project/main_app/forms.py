@@ -22,5 +22,11 @@ class UploadFileAndChoosePartForm(forms.Form):
         widget=forms.Select(choices=PART_CHOICES)
     )
     
+class UploadVideoAndChoosePartForm(forms.Form):
+    video = forms.FileField()
+    output_type = forms.CharField(
+        label="Which part of your face do you want to detect?",
+        widget=forms.Select(choices=PART_CHOICES)     
+    )
 
     

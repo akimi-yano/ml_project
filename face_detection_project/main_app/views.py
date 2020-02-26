@@ -1,6 +1,5 @@
 from django.shortcuts import render
-from .forms import UploadFileForm, UploadFileAndChoosePartForm, UploadVideoForm
-
+from .forms import UploadFileForm, UploadFileAndChoosePartForm, UploadVideoForm, UploadVideoAndChoosePartForm
 def main(request):
     return render(request,"main_page.html")
 
@@ -54,7 +53,7 @@ def to_shape_detection_video(request):
     return render(request, "to_shape_detection_video.html", context)
 
 def to_part_detection_video(request):
-    form = UploadVideoForm()
+    form = UploadVideoAndChoosePartForm()
     context = {
         "form": form
     }

@@ -9,10 +9,13 @@
     <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
     <script src="https://kit.fontawesome.com/c3e68e9bd6.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+    {% load static %}
     <style>
         *{
             padding:0px;
             margin:0px;
+            font-family: 'Press Start 2P';
         }
         .cover{
             padding: 1vw;
@@ -23,13 +26,13 @@
             border: 2px dotted white;
         }
         h1, h3, h4, form, a{
-            font-family: 'Lacquer';
+            font-family: 'Press Start 2P';
             color: white;
             text-align: center;
         }
         td{
             font-size: 30px;
-            font-family: 'Lacquer';
+            font-family: 'Press Start 2P';
             color: white;
             padding: 1vw;
         }
@@ -122,7 +125,10 @@
             width: min-content;
             margin: auto;
         }
-
+    .home{
+            width: 60px;
+            height: 50px;
+    }
     </style>
 </head>
 <body>
@@ -139,7 +145,7 @@
         </form>
     </div>
     <p class="alert"><i class="fas fa-exclamation-triangle"></i>Uploaded image or video will not be saved in our database</p>
-    <a class="btn btn-outline-danger" href="/">Back to Home</a>
+    <a class="btn btn-outline-danger" href="/"><img class="home" src="{% static 'images/home.png' %}" /></a>
 </div>
 <script>
     particlesJS("particles-js", 
