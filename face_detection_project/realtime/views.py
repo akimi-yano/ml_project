@@ -185,18 +185,26 @@ def try_glasses(request):
             distance = shape[lEdge][0] - shape[rStart][0]
             #dim = (width, height)
             resized_glasses = imutils.resize(glasses_mark, width=int(distance * 1.8))
-            glasses_mark_alpha_s = resized_glasses[:, :, 3] / 255.0
-            # ((lEnd-lStart)/2-rStart)
-            glasses_mark_alpha_l = 1.0 - glasses_mark_alpha_s
 
-            horizontal_shift = int(-distance * 0.4)
-            vertical_shift = int(-distance * 0.5)
+            horizontal_shift = int(-distance * 0.45)
+            vertical_shift = int(-distance * 0.2)
             # step 2: find starting point based on lStart
             y1, y2 = shape[rStart][1] + vertical_shift, shape[rStart][1] + resized_glasses.shape[0] + vertical_shift
             x1, x2 = shape[rStart][0] + horizontal_shift, shape[rStart][0] + resized_glasses.shape[1] + horizontal_shift
+
+            # need to account for mark going out of frame
+            y1_offset = max(y1, 0) - y1
+            x1_offset = max(x1, 0) - x1
+            y2_offset = y2 - min(y2, frame.shape[0])
+            x2_offset = x2 - min(x2, frame.shape[1])
+    
+            glasses_mark_alpha_s = resized_glasses[y1_offset:y2-y1-y2_offset, x1_offset:x2-x1-x2_offset, 3] / 255.0
+            # ((lEnd-lStart)/2-rStart)
+            glasses_mark_alpha_l = 1.0 - glasses_mark_alpha_s
+
             for c in range(0, 3):
-                    frame[y1:y2, x1:x2, c] = (glasses_mark_alpha_s * resized_glasses[:, :, c] +
-                                              glasses_mark_alpha_l * frame[y1:y2, x1:x2, c])
+                    frame[y1+y1_offset:y2-y2_offset, x1+x1_offset:x2-x2_offset, c] = (glasses_mark_alpha_s * resized_glasses[y1_offset:y2-y1-y2_offset, x1_offset:x2-x1-x2_offset, c] +
+                                              glasses_mark_alpha_l * frame[y1+y1_offset:y2-y2_offset, x1+x1_offset:x2-x2_offset, c])
         # ((lEnd-lStart)/2-rStart)
         # # show the frame
         # cv2.imshow("Frame", frame)

@@ -106,12 +106,13 @@ def _process_face(image, swap_mark):
         distance = endX - startX
         resized_swap_mark = imutils.resize(swap_mark, width=int(distance * 1.2))
 
-        horizontal_shift = int(-distance * 0.02)
-        vertical_shift = int(-distance * 0.1)
+        horizontal_shift = int(-distance * 0.4)
+        vertical_shift = int(-distance * 0.5)
             # step 2: find starting point based on lStart
         y1, y2 = startY + vertical_shift, startY + vertical_shift + resized_swap_mark.shape[0]
         x1, x2 = startX + horizontal_shift, startX + horizontal_shift + resized_swap_mark.shape[1]
-        # need to account for image going out of frame
+
+        # need to account for mark going out of frame
         y1_offset = max(y1, 0) - y1
         x1_offset = max(x1, 0) - x1
         y2_offset = y2 - min(y2, image.shape[0])
@@ -121,11 +122,9 @@ def _process_face(image, swap_mark):
             # ((lEnd-lStart)/2-rStart)
         resized_swap_mark_alpha_l = 1.0 - resized_swap_mark_alpha_s
         for c in range(0, 3):
-            # resized_swap_mark_alpha_s * resized_swap_mark[y1_offset:y2-y1-y2_offset, x1_offset:x2-x1-x2_offset, c].shape
-            # resized_swap_mark_alpha_l * image[y1+y1_offset:y2-y2_offset, x1+x1_offset:x2-x2_offset, c].shape
-            # image[y1+y1_offset:y2-y2_offset, x1+x1_offset:x2-x2_offset, c].shape
-            image[y1+y1_offset:y2-y2_offset, x1+x1_offset:x2-x2_offset, c] = (resized_swap_mark_alpha_s * resized_swap_mark[y1_offset:y2-y1-y2_offset, x1_offset:x2-x1-x2_offset, c] +
-                                              resized_swap_mark_alpha_l * image[y1+y1_offset:y2-y2_offset, x1+x1_offset:x2-x2_offset, c])
+            image[y1+y1_offset:y2-y2_offset, x1+x1_offset:x2-x2_offset, c] = (
+                resized_swap_mark_alpha_s * resized_swap_mark[y1_offset:y2-y1-y2_offset, x1_offset:x2-x1-x2_offset, c] +
+                resized_swap_mark_alpha_l * image[y1+y1_offset:y2-y2_offset, x1+x1_offset:x2-x2_offset, c])
         # ((lEnd-lStart)/2-rStart)\
 
     return image
