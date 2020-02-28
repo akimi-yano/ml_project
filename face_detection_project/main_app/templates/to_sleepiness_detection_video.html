@@ -9,6 +9,7 @@
     <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c3e68e9bd6.js" crossorigin="anonymous"></script>
     {% load static %}
     <style>
         *{
@@ -51,8 +52,9 @@
             color: white;
         }
 
-        h1, h3{
-            color: rgb(27, 125, 181)
+        h1{
+            color: rgb(27, 125, 181);
+            margin-bottom: 70px;
         }
         td{
             font-size: 30px;
@@ -98,6 +100,7 @@
         }
         h3{
             font-size: 15px;
+            color: yellow;
         }
         #particles-js{
             z-index: 0;
@@ -155,13 +158,42 @@
         button:active{
         border:0;
         }
+        .alert{
+            font-family: 'Press Start 2P';
+            color:palevioletred;
+            margin: 30px 5px;
+        }
+        .fa-exclamation-triangle {
+            color: yellow;
+            margin: 1px;
+            animation: skew 4s infinite;
+        }
+        @keyframes skew {
+
+        20% {
+            transform: skewX(-20deg);
+        }
+
+        40% {
+            transform: skewX(20deg);
+        }
+
+        60% {
+            transform: skewX(-20deg);
+        }
+
+        80% {
+            transform: skewX(20deg);
+        }
+
     </style>
 </head>
 <body>
     <div class="cover" id="particles-js">
         <a class="btn btn-outline-danger" href="/"><img class="home" src="{% static 'images/home.png' %}" /></a>
     <h1>Sleepiness Detection</h1>
-    <h3>Upload a video to detect wink</h3>
+    <h3>Upload a video to see if computer can detect</h3>
+    <h3>if the person is sleepy</h3>
     <div class="format">
         
         <form action="/sleepiness_detection/video" method='post' enctype="multipart/form-data">
@@ -171,7 +203,7 @@
             <button type="submit">Upload</button>
         </form>
     </div>
-   
+    <p class="alert"><i class="fas fa-exclamation-triangle"></i>Uploaded image or video will not be saved in our database</p>
 </div>
 <script>
     particlesJS("particles-js", 

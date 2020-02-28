@@ -156,7 +156,7 @@ def sleep_video(request):
                     cv2.putText(frame, "Sleepy alert!", (10, 30),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
                     y1, y2 = 100, 100 + sleepy_mark.shape[0]
-                    x1, x2 = 10, 10 + sleepy_mark.shape[1]
+                    x1, x2 = 30, 30 + sleepy_mark.shape[1]
                     for c in range(0, 3):
                         frame[y1:y2, x1:x2, c] = (sleepy_mark_alpha_s * sleepy_mark[:, :, c] + sleepy_mark_alpha_l * frame[y1:y2, x1:x2, c])
 
