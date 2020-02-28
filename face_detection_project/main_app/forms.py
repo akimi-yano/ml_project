@@ -84,7 +84,8 @@ SWAP_CHOICES = [
     ("face_swap_app/shades_emoji.png", "shades_face_emoji"),
     ("face_swap_app/smily_emoji.png", "smily_face_emoji"),
     ("face_swap_app/surprized_emoji.png", "surprized_face_emoji"),
-    ("face_swap_app/wink_emoji.png", "wink_face_emoji")
+    ("face_swap_app/wink_emoji.png", "wink_face_emoji"),
+    ("face_swap_app/warai.png", "warai")
 ]
 class UploadImageAndChooseSwap_Image(forms.Form):
     image = forms.ImageField()
@@ -98,4 +99,11 @@ class UploadImageAndChooseGlasses_Image(forms.Form):
     glasses_image = forms.CharField(
         label="Select glasses",
         widget=forms.Select(choices=GLASSES_CHOICES)     
+    )
+    
+class UploadVideoAndChooseSwap_Image(forms.Form):
+    video = forms.FileField()
+    swap_image = forms.CharField(
+        label="Select a face",
+        widget=forms.Select(choices=SWAP_CHOICES)     
     )

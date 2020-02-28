@@ -59,12 +59,12 @@ def shape_image(request):
 
         # show the face number
         cv2.putText(image, "Face #{}".format(i + 1), (x - 10, y - 10),
-            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (225, 0, 0), 2)
+            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 255), 2)
 
         # loop over the (x, y)-coordinates for the facial landmarks
         # and draw them on the image
         for (x, y) in shape:
-            cv2.circle(image, (x, y), 1, (225, 225, 0), -1)
+            cv2.circle(image, (x, y), 1, (255, 0, 0), -1)
 
     # show the output image with the face detections + facial landmarks
     # cv2.imshow("Output", image)
@@ -145,17 +145,17 @@ def shape_video(request):
             # convert dlib's rectangle to a OpenCV-style bounding box
             # [i.e., (x, y, w, h)], then draw the face bounding box
             (x, y, w, h) = face_utils.rect_to_bb(rect)
-            cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 255), 2)
+            cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
 
 
             # show the face number
             cv2.putText(frame, "Face ({})".format(i + 1), (x - 10, y - 10),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 20, 200), 2)
+                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 255), 2)
 
             # loop over the (x, y)-coordinates for the facial landmarks
             # and draw them on the image
             for (x, y) in shape:
-                cv2.circle(frame, (x, y), 1, (255, 255, 0), -1)
+                cv2.circle(frame, (x, y), 1, (0, 0, 255), -1)
 
     # show the output image with the face detections + facial landmarks
     # cv2.imshow("Output", image)

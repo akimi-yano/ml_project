@@ -136,8 +136,9 @@ def sleep_video(request):
             # visualize each of the eyes
             leftEyeHull = cv2.convexHull(leftEye)
             rightEyeHull = cv2.convexHull(rightEye)
-            cv2.drawContours(frame, [leftEyeHull], -1, (0, 0, 255), 1)
-            cv2.drawContours(frame, [rightEyeHull], -1, (0, 0, 255), 1)
+            #this is to show outlines for eyes
+            # cv2.drawContours(frame, [leftEyeHull], -1, (0, 0, 255), 1)
+            # cv2.drawContours(frame, [rightEyeHull], -1, (0, 0, 255), 1)
 
             # check to see if the eye aspect ratio is below the blink
             # threshold, and if so, increment the blink frame counter

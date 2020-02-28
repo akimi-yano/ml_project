@@ -58,9 +58,15 @@
             color: white;
             text-align: center;
         }
-        h1, h3{
+        h1{
             color: rgb(27, 125, 181);
             text-align: center;
+            font-family: 'Press Start 2P';
+        }
+        h3{
+            color:yellow;
+            text-align: center;
+            font-size: 25px;
             font-family: 'Press Start 2P';
         }
         
@@ -118,7 +124,7 @@
             position: absolute;
             z-index : 999;
             background-color: transparent;
-            min-height:1400px;
+            min-height:1300px;
         }
         #particles-js{
             z-index: 999;
@@ -320,19 +326,20 @@ body {
 <div class="cover" id="particles-js">
     <div class="text">
     <h1><img src="{% static 'images/kirby.png' %}" class="star">Technologies<img src="{% static 'images/wing.png' %}" class="star"></h1>
-    <ul>
+    <ul><h3>Web Technologies</h3>
         <li><span>Python</span>: Main language used for this project</li>
-        <li><span>Django</span>: Framework used to put together this website</li>
-        <li><span>Open CV</span>: Heavily used for computer vision processing for images and videos</li>
-        <li><span>Numpy</span>: I needed to use NumPy since OpenCV represents images as multi-dimensional NumPy arrays</li>
-        <li><span>Dlib</span>: The dlib library includes the facial landmark detector which is an implementation of the "One Millisecond Face Alignment with an Ensemble of Regression Trees" paper by Kazemi and Sullivan (2014)</li>
-        <li><span>Imutils</span>: The imutils library includes face_utils that contains mappings of the facial landmark indexes</li>
-        <li><span>Pillow</span>: Python Imaging Library (abbreviated as PIL) (in newer versions known as Pillow) is a free library for the Python programming language that adds support for opening, manipulating, and saving many different image file formats</li>
-        <li><span>Pip</span>: Used to manage the environment created for this project</li>
-        <li><span>Haar cascades</span>: Machine learning object detection algorithm used to identify objects in an image or video and based on the concept of features proposed by Paul Viola and Michael Jones in their paper "Rapid Object Detection using a Boosted Cascade of Simple Features" in 2001</li>
-        <li><span>GitHub</span>: Used to import modules and read documentations</li>
+        <li><span>Django</span>: Web application framework chosen for this website</li>
         <li><span>JavaSctipt, HTML and CSS</span>: Used for front-end designing</li>
-        <li><span>Open CV Tutorials</span>: Inspired and learned from tutorials provided by Adrian Rosebrock</li>
+        <li><span>Pip</span>: Used to manage the environment created for this project</li>
+    </ul>
+    <ul><h3>Computer Vision Technologies</h3>
+        <li><span>Open CV</span>: Real-time computer vision library</li>
+        <li><span>Numpy</span>: Handling of multi-dimensional arrays</li>
+        <li><span>Dlib</span>: Facial landmark detector which is an implementation of the "One Millisecond Face Alignment with an Ensemble of Regression Trees" paper by Kazemi and Sullivan (2014)</li>
+        <li><span>Imutils</span>: Utilities to simplify image processing, such as facial landmark indexes and video processing</li>
+        <li><span>Pillow</span>: Python Imaging Library (abbreviated as PIL) (in newer versions known as Pillow): adds support for opening, manipulating, and saving many different image file formats</li>
+        <li><span>Haar cascades</span>: Machine learning object detection algorithm used to identify objects in an image or video and based on the concept of features proposed by Paul Viola and Michael Jones in their paper "Rapid Object Detection using a Boosted Cascade of Simple Features" in 2001</li>
+        <li><span>Open CV Tutorials</span>: Inspired and learned from tutorials provided by Adrian Rosebrock at pyimagesearch.com</li>
         
     </ul>
 </div>

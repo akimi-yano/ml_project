@@ -25,7 +25,7 @@
             font-family: 'Press Start 2P';
             color: white;
             text-align: center;
-            font-size: 23px;
+            font-size: 35px;
         }
 
         h3,a {
@@ -72,7 +72,7 @@
             position: relative;
             z-index : -1;
             background-color: transparent;
-            min-height:1000px;
+            min-height:1100px;
         }
 
         .face {
@@ -102,12 +102,13 @@
             }
         }
 
-        span {
-
+        h2 {
             animation: flash 5s linear infinite;
-            margin: 20px;
-            font-size: 30px;
+            font-size: 22px;
             font-weight: bold;
+            text-align: center;
+            margin: -10px 0px 40px 0px;
+
         }
 
         @keyframes flash {
@@ -288,7 +289,8 @@
 
 
     <div class="cover" id="particles-js">
-        <h1><span>Machine Learning</span> Face<img class="face" src="{% static 'images/face.png' %}" />Recognition Lab</h1>
+        <h1>Face<img class="face" src="{% static 'images/face.png' %}" />Labo</h1>
+        <h2> - ML: Face Recognition - </h2>
         <h3>Upload an image or video to detect: </h3>
 
         <div class="format">

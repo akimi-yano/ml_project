@@ -49,7 +49,7 @@ def eye_aspect_ratio(eye):
 # frames the eye must be below the threshold
 def wink_video(request):
     EYE_AR_THRESH = 0.21
-    EYE_AR_THRESH2 = 0.23
+    # EYE_AR_THRESH2 = 0.23
     EYE_AR_CONSEC_FRAMES = 1
     
 
@@ -139,8 +139,9 @@ def wink_video(request):
             # visualize each of the eyes
             leftEyeHull = cv2.convexHull(leftEye)
             rightEyeHull = cv2.convexHull(rightEye)
-            cv2.drawContours(frame, [leftEyeHull], -1, (255, 0, 255), 1)
-            cv2.drawContours(frame, [rightEyeHull], -1, (255, 0, 255), 1)
+            #this is to show the outlines of eyes
+            # cv2.drawContours(frame, [leftEyeHull], -1, (255, 0, 255), 1)
+            # cv2.drawContours(frame, [rightEyeHull], -1, (255, 0, 255), 1)
 
             # check to see if the eye aspect ratio is below the blink
             # threshold, and if so, increment the blink frame counter
@@ -167,8 +168,8 @@ def wink_video(request):
                 if LEFT_COUNTER >= EYE_AR_CONSEC_FRAMES:
                     LEFTWINK_SHOW = 5
                 LEFT_COUNTER = 0
-                if leftEAR < EYE_AR_THRESH2 and rightEAR < EYE_AR_THRESH2:
-                    COUNTER += 1
+                # if leftEAR < EYE_AR_THRESH2 and rightEAR < EYE_AR_THRESH2:
+                #     COUNTER += 1
                 
             if rightEAR < EYE_AR_THRESH and leftEAR >= EYE_AR_THRESH:
                 RIGHT_COUNTER += 1
@@ -176,8 +177,8 @@ def wink_video(request):
                 if RIGHT_COUNTER >= EYE_AR_CONSEC_FRAMES:
                     RIGHTWINK_SHOW = 5
                 RIGHT_COUNTER = 0
-                if leftEAR < EYE_AR_THRESH2 and rightEAR < EYE_AR_THRESH2:
-                    COUNTER += 1
+                # if leftEAR < EYE_AR_THRESH2 and rightEAR < EYE_AR_THRESH2:
+                #     COUNTER += 1
             
 
             # draw the total number of blinks on the frame along with
