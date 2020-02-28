@@ -15,6 +15,8 @@ urlpatterns = [
     path('to_sleepiness_detection/video', views.to_sleepiness_detection_video),
     path('to_try_glasses/video', views.to_try_glasses_video),
     path('to_face_swap/video', views.to_face_swap_video),
-    path('test', views.test),
+    path('to_try_glasses/image', views.to_try_glasses_image),
+    path('to_face_swap/image', views.to_face_swap_image)
+ 
     
 ]

@@ -23,6 +23,76 @@ from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from wsgiref.util import FileWrapper
 
+def try_glasses_image(request):
+    detector = dlib.get_frontal_face_detector()
+    # predictor = dlib.shape_predictor(args["shape_predictor"])
+
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    predictor_path = os.path.join(dir_path, "shape_predictor_68_face_landmarks.dat")
+    predictor = dlib.shape_predictor(predictor_path)
+
+    # grab the indexes of the facial landmarks for the left and
+    # right eye, respectively
+    (lStart, lEnd) = face_utils.FACIAL_LANDMARKS_IDXS["left_eye"]
+    (rStart, rEnd) = face_utils.FACIAL_LANDMARKS_IDXS["right_eye"]
+    
+    image = _grab_image(stream=request.FILES['image'])
+    
+    image = imutils.resize(image, width=450)
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    
+    glasses_mark = cv2.imread(request.POST['glasses_image'], -1)
+
+    # detect faces in the grayscale image
+    rects = detector(gray, 0)
+
+    for rect in rects:
+        shape = predictor(gray, rect)
+        shape = face_utils.shape_to_np(shape)
+
+        # extract the left and right eye coordinates, then use the
+        # coordinates to compute the eye aspect ratio for both eyes
+        leftEye = shape[lStart:lEnd]
+        rightEye = shape[rStart:rEnd]
+        left_midpoint = eye_midpoint(leftEye)
+        right_midpoint = eye_midpoint(rightEye)
+
+        # compute the convex hull for the left and right eye, then
+        # visualize each of the eyes
+        leftEyeHull = cv2.convexHull(leftEye)
+        rightEyeHull = cv2.convexHull(rightEye)
+    
+        lEdge = (lEnd + lStart) // 2
+        distance = shape[lEdge][0] - shape[rStart][0]
+        #dim = (width, height)
+        resized_glasses = imutils.resize(glasses_mark, width=int(distance * 1.8))
+
+        horizontal_shift = int(-distance * 0.45)
+        vertical_shift = int(-distance * 0.2)
+        # step 2: find starting point based on lStart
+        y1, y2 = shape[rStart][1] + vertical_shift, shape[rStart][1] + resized_glasses.shape[0] + vertical_shift
+        x1, x2 = shape[rStart][0] + horizontal_shift, shape[rStart][0] + resized_glasses.shape[1] + horizontal_shift
+
+        # need to account for mark going out of image
+        y1_offset = max(y1, 0) - y1
+        x1_offset = max(x1, 0) - x1
+        y2_offset = y2 - min(y2, image.shape[0])
+        x2_offset = x2 - min(x2, image.shape[1])
+    
+        glasses_mark_alpha_s = resized_glasses[y1_offset:y2-y1-y2_offset, x1_offset:x2-x1-x2_offset, 3] / 255.0
+        glasses_mark_alpha_l = 1.0 - glasses_mark_alpha_s
+
+        for c in range(0, 3):
+            image[y1+y1_offset:y2-y2_offset, x1+x1_offset:x2-x2_offset, c] = (
+                glasses_mark_alpha_s * resized_glasses[y1_offset:y2-y1-y2_offset, x1_offset:x2-x1-x2_offset, c] +
+                glasses_mark_alpha_l * image[y1+y1_offset:y2-y2_offset, x1+x1_offset:x2-x2_offset, c]
+                )
+
+    cv2.imwrite('temp.jpg', image)
+    response = FileResponse(open('temp.jpg', 'rb'))
+    os.remove('temp.jpg')
+    return response
+
 
 def eye_midpoint(eye):
 	# compute the euclidean distances between the two sets of
@@ -51,7 +121,7 @@ def eye_midpoint(eye):
 # define two constants, one for the eye aspect ratio to indicate
 # blink and then a second constant for the number of consecutive
 # frames the eye must be below the threshold
-def try_glasses(request):
+def try_glasses_video(request):
     # EYE_AR_THRESH = 0.3
     # EYE_AR_CONSEC_FRAMES = 3
 
@@ -281,5 +351,26 @@ def try_glasses(request):
 
 
 
+def _grab_image(path=None, stream=None, url=None):
+    # if the path is not None, then load the image from disk
+    if path is not None:
+        image = cv2.imread(path)
+    # otherwise, the image does not reside on disk
+    else:
+        # if the URL is not None, then download the image
+        # the older ver was using resp = urllib.urlopen(url) but I updated it to resp = urllib.request.urlopen(url)
+        if url is not None:
+            resp = urllib.request.urlopen(url)
+            data = resp.read()
+        # if the stream is not None, then the image has been uploaded
+        elif stream is not None:
+            data = stream.read()
+        # convert the image to a NumPy array and then read it into
+        # OpenCV format
+        image = np.asarray(bytearray(data), dtype="uint8")
+        image = cv2.imdecode(image, cv2.IMREAD_COLOR)
+
+    # return the image
+    return image
 
 

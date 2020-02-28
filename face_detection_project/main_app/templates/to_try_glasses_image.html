@@ -10,15 +10,37 @@
     <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
     {% load static %}
-    
     <style>
         *{
             padding:0px;
             margin:0px;
             font-family: 'Press Start 2P';
         }
+        .cover{
+            padding: 1vw;
+        }
+        .image_upload{
+            display: inline-block;
+            border: 1px dotted blue;
+            padding: 1vw;
+        }
+        .video_upload{
+            display: inline-block;
+            border: 1px dotted blue;
+            padding: 1vw;
+        }
         input{
             border: 2px dotted white;
+        }
+        .image_upload{
+            display: inline-block;
+            border: 2px dotted white;
+            padding: 1vw;
+        }
+        .video_upload{
+            display: inline-block;
+            border: 2px dotted white;
+            padding: 1vw;
         }
 
         h1, h3, h4, form, a{
@@ -31,9 +53,6 @@
 
         h1, h3{
             color: rgb(27, 125, 181)
-        }
-        h3{
-            font-size: 15px;
         }
         td{
             font-size: 30px;
@@ -62,17 +81,12 @@
             font-weight: bold;
             font-size: 45px;
         }
-
         form{
             display: block;
         }
         a{
             z-index: 100;
             position: relative;
-        }
-        input{
-            height: 60px;
-            vertical-align: middle;
         }
         .cover {
             padding: 3vw;
@@ -82,11 +96,8 @@
             background-color: transparent;
             min-height:1000px;
         }
-        .format {
-            z-index: 100;
-            position: relative;
-            width: min-content;
-            margin: auto;
+        h3{
+            font-size: 15px;
         }
         #particles-js{
             z-index: 0;
@@ -104,6 +115,12 @@
         #stats, .count-particles{ -webkit-user-select: none; margin-top: 5px; margin-left: 5px; } 
         #stats{ border-radius: 3px 3px 0 0; overflow: hidden; } 
         .count-particles{ border-radius: 0 0 3px 3px; }
+        .format {
+            z-index: 100;
+            position: relative;
+            width: min-content;
+            margin: auto;
+        }
         .home{
             width: 60px;
             height: 50px;
@@ -143,18 +160,18 @@
 <body>
     <div class="cover" id="particles-js">
         <a class="btn btn-outline-danger" href="/"><img class="home" src="{% static 'images/home.png' %}" /></a>
-    <h1>Face Swap</h1>
-    <h3>Upload a video to see if computer can detect</h3>
-    <h3>your face and swap it with a face you chose</h3>
-    
+    <h1>Glasses</h1>
+    <h3>Upload an image to detect wink</h3>
     <div class="format">
-        <form action="/face_swap/video" method='post' enctype="multipart/form-data">
+        
+        <form action="/try_glasses/image" method='post' enctype="multipart/form-data">
             {% csrf_token %}
+
             {{form}}
             <button type="submit">Upload</button>
         </form>
     </div>
-
+    
 </div>
 <script>
     particlesJS("particles-js", 

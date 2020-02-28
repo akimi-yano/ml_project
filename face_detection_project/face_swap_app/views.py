@@ -33,8 +33,7 @@ from wsgiref.util import FileWrapper
 FACE_DETECTOR_PATH = "{base_path}/cascades/haarcascade_frontalface_default.xml".format(
     base_path=os.path.abspath(os.path.dirname(__file__)))
 
-
-def detect_image(request):
+def face_swap_image(request):
     # check to see if this is a post request
     if request.method != "POST":
         return HttpResponse("Must upload picture")
@@ -45,7 +44,8 @@ def detect_image(request):
 
     # grab the uploaded image
     image = _grab_image(stream=request.FILES['image'])
-    processed_image = _process_face(image)
+    swap_mark = cv2.imread(request.POST['swap_image'], -1)
+    processed_image = _process_face(image, swap_mark)
 
     try:
         cv2.imwrite('temp.jpg', image)
@@ -106,8 +106,8 @@ def _process_face(image, swap_mark):
         distance = endX - startX
         resized_swap_mark = imutils.resize(swap_mark, width=int(distance * 1.2))
 
-        horizontal_shift = int(-distance * 0.4)
-        vertical_shift = int(-distance * 0.5)
+        horizontal_shift = int(-distance * 0.08)
+        vertical_shift = int(-distance * 0.2)
             # step 2: find starting point based on lStart
         y1, y2 = startY + vertical_shift, startY + vertical_shift + resized_swap_mark.shape[0]
         x1, x2 = startX + horizontal_shift, startX + horizontal_shift + resized_swap_mark.shape[1]

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import UploadFileForm, UploadFileAndChoosePartForm, UploadVideoForm, UploadVideoAndChoosePartForm, UploadVideoAndChooseImages, UploadVideoAndChooseSleeping_Image, UploadVideoAndChooseGlasses_Image, UploadVideoAndChooseSwap_Image
+from .forms import *
 def main(request):
     return render(request,"main_page.html")
 
@@ -79,7 +79,7 @@ def to_try_glasses_video(request):
     context = {
         "form": form
     }
-    return render(request, "to_try_glasses.html", context)
+    return render(request, "to_try_glasses_video.html", context)
 
 def to_face_swap_video(request):
     form = UploadVideoAndChooseSwap_Image()
@@ -88,9 +88,17 @@ def to_face_swap_video(request):
     }
     return render(request, "to_face_swap_video.html", context)
 
-def test(request):
-    form = UploadVideoAndChooseSleeping_Image()
+def to_try_glasses_image(request):
+    form = UploadImageAndChooseGlasses_Image()
     context = {
         "form": form
     }
-    return render(request, "test.html", context)
+    return render(request, "to_try_glasses_image.html", context)
+    
+    
+def to_face_swap_image(request):
+    form = UploadImageAndChooseSwap_Image()
+    context = {
+        "form": form
+    }
+    return render(request, "to_face_swap_image.html", context)

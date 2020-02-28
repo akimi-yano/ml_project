@@ -144,11 +144,11 @@
     <div class="cover" id="particles-js">
         <a class="btn btn-outline-danger" href="/"><img class="home" src="{% static 'images/home.png' %}" /></a>
     <h1>Face Swap</h1>
-    <h3>Upload a video to see if computer can detect</h3>
+    <h3>Upload a image to see if computer can detect</h3>
     <h3>your face and swap it with a face you chose</h3>
     
     <div class="format">
-        <form action="/face_swap/video" method='post' enctype="multipart/form-data">
+        <form action="/face_swap/image" method='post' enctype="multipart/form-data">
             {% csrf_token %}
             {{form}}
             <button type="submit">Upload</button>
