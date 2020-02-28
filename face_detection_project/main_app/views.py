@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import UploadFileForm, UploadFileAndChoosePartForm, UploadVideoForm, UploadVideoAndChoosePartForm
+from .forms import UploadFileForm, UploadFileAndChoosePartForm, UploadVideoForm, UploadVideoAndChoosePartForm, UploadVideoAndChooseImages, UploadVideoAndChooseSleeping_Image, UploadVideoAndChooseGlasses_Image, UploadVideoAndChooseSwap_Image
 def main(request):
     return render(request,"main_page.html")
 
@@ -60,16 +60,37 @@ def to_part_detection_video(request):
     return render(request, "to_part_detection_video.html", context)
 
 def to_wink_detection_video(request):
-    form = UploadVideoForm()
+    form = UploadVideoAndChooseImages()
     context = {
         "form": form
     }
     return render(request, "to_wink_detection_video.html", context)
 
 def to_sleepiness_detection_video(request):
-    form = UploadVideoForm()
+    form = UploadVideoAndChooseSleeping_Image()
     context = {
         "form": form
     }
     return render(request, "to_sleepiness_detection_video.html", context)
 
+def to_try_glasses_video(request):
+    
+    form = UploadVideoAndChooseGlasses_Image()
+    context = {
+        "form": form
+    }
+    return render(request, "to_try_glasses.html", context)
+
+def to_face_swap_video(request):
+    form = UploadVideoAndChooseSwap_Image()
+    context = {
+        "form": form
+    }
+    return render(request, "to_face_swap_video.html", context)
+
+def test(request):
+    form = UploadVideoAndChooseSleeping_Image()
+    context = {
+        "form": form
+    }
+    return render(request, "test.html", context)

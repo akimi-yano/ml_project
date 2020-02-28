@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'face_swap_app',
     'main_app',
     'realtime',
     'sleepiness_detection_app',

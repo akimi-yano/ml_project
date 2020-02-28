@@ -12,5 +12,9 @@ urlpatterns = [
     path('to_shape_detection/video', views.to_shape_detection_video),
     path('to_part_detection/video', views.to_part_detection_video),
     path('to_wink_detection/video', views.to_wink_detection_video),
-    path('to_sleepiness_detection/video', views.to_sleepiness_detection_video)
+    path('to_sleepiness_detection/video', views.to_sleepiness_detection_video),
+    path('to_try_glasses/video', views.to_try_glasses_video),
+    path('to_face_swap/video', views.to_face_swap_video),
+    path('test', views.test),
+    
 ]

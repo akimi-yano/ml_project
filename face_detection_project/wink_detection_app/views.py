@@ -308,15 +308,15 @@ def wink_video(request):
             writer = cv2.VideoWriter("outpy.avi", fourcc, 30,
                 (w, h), True)
             zeros = np.zeros((h, w), dtype="uint8")
-            right_mark = cv2.imread('wink_detection_app/heart.png', -1)
+            right_mark = cv2.imread(request.POST['right_wink_image'], -1)
             right_mark_alpha_s = right_mark[:, :, 3] / 255.0
             right_mark_alpha_l = 1.0 - right_mark_alpha_s
             
-            left_mark = cv2.imread('wink_detection_app/star.png', -1)
+            left_mark = cv2.imread(request.POST['left_wink_image'], -1)
             left_mark_alpha_s = left_mark[:, :, 3] / 255.0
             left_mark_alpha_l = 1.0 - left_mark_alpha_s
             
-            middle_mark = cv2.imread('wink_detection_app/kinoko.png', -1)
+            middle_mark = cv2.imread(request.POST['blink_image'], -1)
             middle_mark_alpha_s = middle_mark[:, :, 3] / 255.0
             middle_mark_alpha_l = 1.0 - middle_mark_alpha_s
 

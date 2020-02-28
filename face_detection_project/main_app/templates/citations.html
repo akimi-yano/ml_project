@@ -17,10 +17,15 @@
             margin:0px;
             font-family: 'Press Start 2P';
         }
-        .fa-star{
-            color: yellow;
-            margin: 13px;
+        h1{
+            margin: 30px 5px 30px 5px;
+        }
+        .star{
+            width: 100px;
+            height:100px;
+            margin: -27px 15px;
             animation: rotate_stars 7s infinite;
+            vertical-align: top;
         }
         @keyframes rotate_stars{
         
@@ -47,32 +52,37 @@
         input{
             border: 2px dotted white;
         }
-        .image_upload{
-            display: inline-block;
-            border: 2px dotted white;
-            padding: 1vw;
-        }
-        .video_upload{
-            display: inline-block;
-            border: 2px dotted white;
-            padding: 1vw;
-        }
 
-        h1, h3, h4, form, a{
+        h4, form, a{
             font-family: 'Press Start 2P';
             color: white;
             text-align: center;
         }
+        h1, h3{
+            color: rgb(27, 125, 181);
+            text-align: center;
+            font-family: 'Press Start 2P';
+        }
         
         ul, li{
-            font-size: 30px;
+            font-size: 15px;
+            font-weight: normal;
             font-family: 'Press Start 2P';
             color: white;
+            margin:5px;
+            line-height: 20px;
+            text-align: justify;
+            letter-spacing: 2px;
             padding: 1vw;
+            z-index: -100;
+            position: relative;
         }
-        .bubble08{
-            font-family: 'Press Start 2P';
+        ul{
+            width: 70%;
+            margin: auto;
+            z-index: -100;
         }
+
         table{
             vertical-align: middle;
             position: relative;
@@ -86,55 +96,18 @@
             padding: 3vw;
             width: 100vw;
             height: 100vh;
-            position: absolute;
+
             background-color: black;
         }
         span{
-            color: lightskyblue;
+            color:palevioletred;
             font-weight: bold;
-            font-size: 45px;
+        
         }
         .format{
             padding: 10vw 28vw;
         }
-        .bubble08 {
-            position: relative;
-            display: inline-block;
-            width: 200px; 
-            text-align: center;
-            padding: 25px;
-            background-color: #FFF;
-            border: #000 solid 4px;
-            border-radius: 40px;
-        }
-        .bubble08:before {
-            content: '';
-            position: absolute;
-            display: block;
-            z-index: 1;
-            border-style: solid;
-            border-color: #FFF transparent;
-            border-width: 25px 25px 0 0;
-            bottom: -16px;
-            left: 50%;
-            margin-left: -10px;
-        }
-        .bubble08:after
-        {
-            content: '';
-            position: absolute;
-            display: block;
-            z-index: 0;
-            border-style: solid;
-            border-color: #000 transparent;
-            border-width: 25px 25px 0 0;
-            bottom: -25px;
-            left: 50%;
-            margin-left: -14px;
-        }
-        .fa-smile-beam{
-            color:black;
-        }
+
         a{
             z-index: 100;
             position: relative;
@@ -142,20 +115,19 @@
         .cover {
             padding: 3vw;
             width: 100vw;
-            height: 200vh;
-            position: relative;
-            z-index : -1;
+            position: absolute;
+            z-index : 999;
             background-color: transparent;
-            
+            min-height:1400px;
         }
         #particles-js{
-            z-index: 0;
-            position: relative;
+            z-index: 999;
+            position: absolute;
         }
         .particle, .particle > canvas { z-index: -1 !important; }
         /* ---- reset ---- */ 
         body{ margin:0; font:normal 75% Arial, Helvetica, sans-serif; } 
-        canvas{ display: block; vertical-align: bottom; position:absolute; top:0; left:0; } 
+        canvas{ display: block; vertical-align: bottom; position:absolute; top:0; left:0; z-index: 99;} 
         /* ---- particles.js container ---- */ 
         #particles-js{ position:relative; width: 100%; height: 100%; background-color: #000; background-image: url(""); background-repeat: no-repeat; background-size: cover; background-position: 50% 50%; } 
         /* ---- stats.js ---- */ 
@@ -168,23 +140,226 @@
             width: 60px;
             height: 50px;
         }
+
+
+body {
+	background:transparent;
+	color: #333;
+	font: 100% Arial, Sans Serif;
+	height: 100vh;
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+}
+
+#background-wrap {
+    bottom: 0;
+	left: 0;
+	padding-top: 50px;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: -100;
+}
+
+/* KEYFRAMES */
+
+@-webkit-keyframes animateCloud {
+    0% {
+        margin-left: -1000px;
+    }
+    100% {
+        margin-left: 100%;
+    }
+}
+
+@-moz-keyframes animateCloud {
+    0% {
+        margin-left: -1000px;
+    }
+    100% {
+        margin-left: 100%;
+    }
+}
+
+@keyframes animateCloud {
+    0% {
+        margin-left: -1000px;
+    }
+    100% {
+        margin-left: 100%;
+    }
+}
+
+/* ANIMATIONS */
+
+.x1 {
+	-webkit-animation: animateCloud 24s linear infinite;
+	-moz-animation: animateCloud 24s linear infinite;
+	animation: animateCloud 24s linear infinite;
+	
+	-webkit-transform: scale(0.65);
+	-moz-transform: scale(0.65);
+	transform: scale(0.65);
+}
+
+.x2 {
+	-webkit-animation: animateCloud 10s linear infinite;
+	-moz-animation: animateCloud 10s linear infinite;
+	animation: animateCloud 10s linear infinite;
+	
+	-webkit-transform: scale(0.3);
+	-moz-transform: scale(0.3);
+	transform: scale(0.3);
+}
+
+.x3 {
+	-webkit-animation: animateCloud 18s linear infinite;
+	-moz-animation: animateCloud 18s linear infinite;
+	animation: animateCloud 18s linear infinite;
+	
+	-webkit-transform: scale(0.5);
+	-moz-transform: scale(0.5);
+	transform: scale(0.5);
+}
+
+.x4 {
+	-webkit-animation: animateCloud 8s linear infinite;
+	-moz-animation: animateCloud 8s linear infinite;
+	animation: animateCloud 8s linear infinite;
+	
+	-webkit-transform: scale(0.4);
+	-moz-transform: scale(0.4);
+	transform: scale(0.4);
+}
+
+.x5 {
+	-webkit-animation: animateCloud 11s linear infinite;
+	-moz-animation: animateCloud 11s linear infinite;
+	animation: animateCloud 11s linear infinite;
+	
+	-webkit-transform: scale(0.55);
+	-moz-transform: scale(0.55);
+	transform: scale(0.55);
+}
+
+.x6 {
+	-webkit-animation: animateCloud 8s linear infinite;
+	-moz-animation: animateCloud 8s linear infinite;
+	animation: animateCloud 8s linear infinite;
+	
+	-webkit-transform: scale(0.5);
+	-moz-transform: scale(0.5);
+	transform: scale(0.5);
+}
+
+.x7 {
+	-webkit-animation: animateCloud 25s linear infinite;
+	-moz-animation: animateCloud 25s linear infinite;
+	animation: animateCloud 25s linear infinite;
+	
+	-webkit-transform: scale(0.65);
+	-moz-transform: scale(0.65);
+	transform: scale(0.65);
+    
+}
+/* OBJECTS */
+
+.cloud{
+    z-index: -2;
+
+}
+
+/* .cloud:after, .cloud:before {
+    background: #fff;
+	content: '';
+	position: absolute;
+	z-indeX: -1;
+} */
+
+/* .cloud:after {
+	-webkit-border-radius: 100px;
+	-moz-border-radius: 100px;
+	border-radius: 100px;
+
+	height: 100px;
+	left: 50px;
+	top: -50px;
+	width: 100px;
+} */
+/* 
+.cloud:before {
+	-webkit-border-radius: 200px;
+	-moz-border-radius: 200px;
+	border-radius: 200px;
+
+	width: 180px;
+	height: 180px;
+	right: 50px;
+	top: -90px;
+} */
+.cover{
+    position: relative;
+    display: inline-block; /* Make the width of box same as image */
+
+}
+.cover .text{
+    position: absolute;
+        z-index: 99;
+        margin: 0 auto;
+        left: 0;
+        right: 0;        
+        text-align: center;
+}
+
     </style>
 </head>
 
 <body>
+    
 <div class="cover" id="particles-js">
-    <h1><i class="fas fa-star"></i>Technologies Applied<i class="fas fa-star"></i></h1>
-    <div class="bubble08" >Thank you - <i class="far fa-smile-beam"></i></div>
+    <div class="text">
+    <h1><img src="{% static 'images/kirby.png' %}" class="star">Technologies<img src="{% static 'images/wing.png' %}" class="star"></h1>
     <ul>
-        <li>Python</li>
-        <li>Django</li>
-        <li>Open CV</li>
-        <li>Numpy</li>
-        <li>Requests</li>
+        <li><span>Python</span>: Main language used for this project</li>
+        <li><span>Django</span>: Framework used to put together this website</li>
+        <li><span>Open CV</span>: Heavily used for computer vision processing for images and videos</li>
+        <li><span>Numpy</span>: I needed to use NumPy since OpenCV represents images as multi-dimensional NumPy arrays</li>
+        <li><span>Dlib</span>: The dlib library includes the facial landmark detector which is an implementation of the "One Millisecond Face Alignment with an Ensemble of Regression Trees" paper by Kazemi and Sullivan (2014)</li>
+        <li><span>Imutils</span>: The imutils library includes face_utils that contains mappings of the facial landmark indexes</li>
+        <li><span>Pillow</span>: Python Imaging Library (abbreviated as PIL) (in newer versions known as Pillow) is a free library for the Python programming language that adds support for opening, manipulating, and saving many different image file formats</li>
+        <li><span>Pip</span>: Used to manage the environment created for this project</li>
+        <li><span>Haar cascades</span>: Machine learning object detection algorithm used to identify objects in an image or video and based on the concept of features proposed by Paul Viola and Michael Jones in their paper "Rapid Object Detection using a Boosted Cascade of Simple Features" in 2001</li>
+        <li><span>GitHub</span>: Used to import modules and read documentations</li>
+        <li><span>JavaSctipt, HTML and CSS</span>: Used for front-end designing</li>
+        <li><span>Open CV Tutorials</span>: Inspired and learned from tutorials provided by Adrian Rosebrock</li>
+        
     </ul>
-    <a href='https://pngtree.com/so/heart-shaped-impressions'>heart-shaped-impressions png from pngtree.com</a>
-    <a href='https://pngtree.com/so/simple'>simple png from pngtree.com</a>
+</div>
     <a class="btn btn-outline-danger" href="/"><img class="home" src="{% static 'images/home.png' %}" /></a>
+
+    <div class="x1">
+        <img src="{% static 'images/cloud1.png' %}" class="cloud">
+    </div>
+    <div class="x2">
+        <img src="{% static 'images/cloud2.png' %}" class="cloud">
+    </div>
+    <div class="x3">
+        <img src="{% static 'images/cloud3.png' %}" class="cloud">
+    </div>
+    <div class="x4">
+        <img src="{% static 'images/cloud4.png' %}" class="cloud">
+    </div>
+    <div class="x5">
+        <img src="{% static 'images/cloud5.png' %}" class="cloud">
+    </div>
+    <div class="x6">
+        <img src="{% static 'images/cloud6.png' %}" class="cloud">
+    </div>
+    <div class="x7">
+        <img src="{% static 'images/cloud7.png' %}" class="cloud">
+    </div>
+
 </div>
 <script>
     particlesJS("particles-js", 

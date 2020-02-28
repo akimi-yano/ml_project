@@ -47,15 +47,18 @@ def detect_image(request):
     image = _grab_image(stream=request.FILES['image'])
     processed_image = _process_face(image)
 
+    error = None
     try:
         cv2.imwrite('temp.jpg', image)
         response = FileResponse(open('temp.jpg', 'rb'))
     except Exception as e:
-        response = HttpResponse(f"Something went wrong when processing the image: {e}")
+        error = e
     finally:
         # make sure to delete files so that we don't run out of disk space
         os.remove('temp.jpg')
 
+    if error:
+        raise error
     return response
 
 
@@ -97,7 +100,7 @@ def _process_face(image):
         minSize=(30, 30), flags=cv2.CASCADE_SCALE_IMAGE)
     rects = [(int(x), int(y), int(x + w), int(y + h)) for (x, y, w, h) in rects]
     for (startX, startY, endX, endY) in rects:
-        cv2.rectangle(image, (startX, startY), (endX, endY), (0, 255, 0), 2)
+        cv2.rectangle(image, (startX, startY), (endX, endY), (28, 12, 245), 2)
     return image
 
 
@@ -118,15 +121,16 @@ def _process_face_video(input_filename):
             break
 
         frame = imutils.resize(frame, width=450)
-        # detect face in this frame and save to processed_frame
-        processed_frame = _process_face(frame)
 
         if writer is None:
-            (h, w) = processed_frame.shape[:2]
+            (h, w) = frame.shape[:2]
             output_filename = "temp.avi"
             writer = cv2.VideoWriter(output_filename, fourcc, 30,
                 (w, h), True)
             zeros = np.zeros((h, w), dtype="uint8")
+
+        # detect face in this frame and save to processed_frame
+        processed_frame = _process_face(frame)
 
         (B, G, R) = cv2.split(processed_frame)
         R = cv2.merge([zeros, zeros, R])

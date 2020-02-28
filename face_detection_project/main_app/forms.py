@@ -18,15 +18,70 @@ PART_CHOICES =[
 class UploadFileAndChoosePartForm(forms.Form):
     image = forms.ImageField()
     output_type = forms.CharField(
-        label="Which part of your face do you want to detect?",
+        label="Select a part of face",
         widget=forms.Select(choices=PART_CHOICES)
     )
     
 class UploadVideoAndChoosePartForm(forms.Form):
     video = forms.FileField()
     output_type = forms.CharField(
-        label="Which part of your face do you want to detect?",
+        label="Select a part of face",
         widget=forms.Select(choices=PART_CHOICES)     
     )
 
+IMAGE_CHOICES = [
+    ("wink_detection_app/heart.png", "heart"),
+    ("wink_detection_app/star.png", "star"),
+    ("wink_detection_app/kinoko.png", "mushroom")
+]
+SLEEP_CHOICES = [
+    ("sleepiness_detection_app/pikachu.png", "sleeping_pikachu"),
+    ("sleepiness_detection_app/sleep.png", "sleeping"),
+    ("sleepiness_detection_app/purin.png","singing_jigglypuff")
     
+]
+class UploadVideoAndChooseImages(forms.Form):
+    video = forms.FileField()
+    right_wink_image = forms.CharField(
+        label="Select an image for right wink",
+        widget=forms.Select(choices=IMAGE_CHOICES)     
+    )
+    left_wink_image = forms.CharField(
+        label="Select an image for left wink",
+        widget=forms.Select(choices=IMAGE_CHOICES)     
+    )
+    blink_image = forms.CharField(
+        label="Select an image for blink",
+        widget=forms.Select(choices=IMAGE_CHOICES)     
+    )
+    
+class UploadVideoAndChooseSleeping_Image(forms.Form):
+    video = forms.FileField()
+    sleeping_image = forms.CharField(
+        label="Select an image",
+        widget=forms.Select(choices=SLEEP_CHOICES)     
+    )
+    
+GLASSES_CHOICES = [
+    ("realtime/glasses.png", "shades"),
+    ("realtime/mustash.png", "moustache_glasses"),
+    ("realtime/fancy_black.png", "fancy_glasses"),
+    ("realtime/red_real.png", "real_glasses"),
+    ("realtime/pixel.png", "pixel_glasses")
+]
+class UploadVideoAndChooseGlasses_Image(forms.Form):
+    video = forms.FileField()
+    glasses_image = forms.CharField(
+        label="Select glasses",
+        widget=forms.Select(choices=GLASSES_CHOICES)     
+    )
+    
+SWAP_CHOICES = [
+    ("face_swap_app/heart_face.png", "heart_face")
+]
+class UploadVideoAndChooseSwap_Image(forms.Form):
+    video = forms.FileField()
+    swap_image = forms.CharField(
+        label="Select a face",
+        widget=forms.Select(choices=SWAP_CHOICES)     
+    )

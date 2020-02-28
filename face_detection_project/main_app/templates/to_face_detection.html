@@ -23,8 +23,14 @@
 
         h1, h3, h4, form, a{
             font-family: 'Press Start 2P';
-            color: white;
             text-align: center;
+        }
+        h4, form, a{
+            color: white;
+        }
+
+        h1, h3{
+            color: rgb(27, 125, 181)
         }
         h3{
             font-size: 15px;
@@ -71,11 +77,10 @@
         .cover {
             padding: 3vw;
             width: 100vw;
-            height: 200vh;
             position: relative;
             z-index : -1;
             background-color: transparent;
-            
+            min-height:1000px;
         }
         .format {
             z-index: 100;
@@ -103,11 +108,41 @@
             width: 60px;
             height: 50px;
         }
-        
+        form input{
+            width: 315px;
+            height: 30px;
+            vertical-align: middle;  
+        }
+        form label{
+            margin:1vh 0vw;
+            font-size: 16px;
+            text-align: left;
+        }
+        button{
+            display: block;
+            margin: 2vh auto;
+            color: white;
+            background: #16a085;
+            border: none;
+            width: 90px;
+            height: 35px;
+            border-radius: 4px;
+            border-bottom: 4px solid #117A60;
+            transition: all .2s ease;
+            outline: none;
+        }
+        button:hover{
+        background: #149174;
+            color: #0C5645;
+        }
+        button:active{
+        border:0;
+        }
     </style>
 </head>
 <body>
     <div class="cover" id="particles-js">
+        <a class="btn btn-outline-danger" href="/"><img class="home" src="{% static 'images/home.png' %}" /></a>
     <h1>Face Detection</h1>
     <h3>Upload an image to see if computer can detect</h3>
     <h3>whether there is a face</h3>
@@ -116,10 +151,10 @@
         <form action="/face_detection/image/detect" method='post' enctype="multipart/form-data">
             {% csrf_token %}
             {{form}}
-            <input type="submit" value="Submit Image">
+            <button type="submit">Upload</button>
         </form>
     </div>
-<a class="btn btn-outline-danger" href="/"><img class="home" src="{% static 'images/home.png' %}" /></a>
+
 </div>
 <script>
     particlesJS("particles-js", 

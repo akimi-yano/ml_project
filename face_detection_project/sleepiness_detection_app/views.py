@@ -69,6 +69,7 @@ def sleep_video(request):
 
     
     data = request.FILES['video']
+    # data = request.POST['video']
     path = default_storage.save('tmp/somename.mp3', ContentFile(data.read()))
     tmp_file = os.path.join(settings.MEDIA_ROOT, path)
     vs = FileVideoStream(tmp_file).start()
@@ -151,8 +152,12 @@ def sleep_video(request):
                         ALARM_ON = True
 
                     # draw an alarm on the frame
-                    cv2.putText(frame, "SLEEPY ALERT! WAKE UP!", (10, 30),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+                    cv2.putText(frame, "Sleepy alert!", (10, 30),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+                    y1, y2 = 100, 100 + sleepy_mark.shape[0]
+                    x1, x2 = 10, 10 + sleepy_mark.shape[1]
+                    for c in range(0, 3):
+                        frame[y1:y2, x1:x2, c] = (sleepy_mark_alpha_s * sleepy_mark[:, :, c] + sleepy_mark_alpha_l * frame[y1:y2, x1:x2, c])
 
             # otherwise, the eye aspect ratio is not below the blink
             # threshold, so reset the counter and alarm
@@ -163,8 +168,8 @@ def sleep_video(request):
             # draw the computed eye aspect ratio on the frame to help
             # with debugging and setting the correct eye aspect ratio
             # thresholds and frame counters
-            cv2.putText(frame, "EAR: {:.2f}".format(ear), (300, 30),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+            # cv2.putText(frame, "EAR: {:.2f}".format(ear), (300, 30),
+            #     cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
     
     #     # show the frame
     #     cv2.imshow("Frame", frame)
@@ -187,6 +192,9 @@ def sleep_video(request):
             writer = cv2.VideoWriter("outpy.avi", fourcc, 30,
                 (w, h), True)
             zeros = np.zeros((h, w), dtype="uint8")
+            sleepy_mark = cv2.imread(request.POST['sleeping_image'], -1)
+            sleepy_mark_alpha_s = sleepy_mark[:, :, 3] / 255.0
+            sleepy_mark_alpha_l = 1.0 - sleepy_mark_alpha_s
             # right_mark = cv2.imread('wink_detection_app/star.png', -1)
             # right_mark_alpha_s = right_mark[:, :, 3] / 255.0
             # right_mark_alpha_l = 1.0 - right_mark_alpha_s
