@@ -4,7 +4,6 @@ from django.shortcuts import render, redirect, HttpResponse
 from pathlib import Path
 
 #imported to do the test
-import requests
 import cv2
 #imported to process image
 from django.views.decorators.csrf import csrf_exempt

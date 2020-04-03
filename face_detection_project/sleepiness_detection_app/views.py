@@ -5,7 +5,7 @@ from imutils import face_utils
 from threading import Thread
 from django.http import FileResponse
 import numpy as np
-import playsound
+# import playsound
 import argparse
 import imutils
 import time
