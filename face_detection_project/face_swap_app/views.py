@@ -1,6 +1,8 @@
 #imported to do the basic functions
 from django.shortcuts import render, redirect, HttpResponse
 
+from pathlib import Path
+
 #imported to do the test
 import requests
 import cv2
@@ -30,8 +32,9 @@ from django.core.files.base import ContentFile
 from wsgiref.util import FileWrapper
 
 # define the path to the face detector
-FACE_DETECTOR_PATH = "{base_path}/cascades/haarcascade_frontalface_default.xml".format(
-    base_path=os.path.abspath(os.path.dirname(__file__)))
+cur_path = Path.cwd()
+static_path = "face_detection_project/static/cascades/haarcascade_frontalface_default.xml"
+FACE_DETECTOR_PATH = os.path.join(cur_path, static_path)
 
 def face_swap_image(request):
     # check to see if this is a post request

@@ -16,6 +16,8 @@ from wsgiref.util import FileWrapper
 from imutils.video import FileVideoStream
 import time
 
+from pathlib import Path
+
 def shape_image(request):
     # construct the argument parser and parse the arguments
     # ap = argparse.ArgumentParser()
@@ -31,8 +33,9 @@ def shape_image(request):
     # predictor = dlib.shape_predictor(args["shape_predictor"])
 
     # get the full path of the predictor file; it is in this app, aka shape_detection_app/
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    predictor_path = os.path.join(dir_path, "shape_predictor_68_face_landmarks.dat")
+    cur_path = str(Path.cwd())
+    shape_predictor_path = "face_detection_project/static/shape_predictor_68_face_landmarks.dat"
+    predictor_path = os.path.join(cur_path, shape_predictor_path)
     predictor = dlib.shape_predictor(predictor_path)
 
     # load the input image, resize it, and convert it to grayscale
@@ -103,8 +106,9 @@ def shape_video(request):
     detector = dlib.get_frontal_face_detector()
     # predictor = dlib.shape_predictor(args["shape_predictor"])
     # get the full path of the predictor file; it is in this app, aka shape_detection_app/
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    predictor_path = os.path.join(dir_path, "shape_predictor_68_face_landmarks.dat")
+    cur_path = str(Path.cwd())
+    shape_predictor_path = "face_detection_project/static/shape_predictor_68_face_landmarks.dat"
+    predictor_path = os.path.join(cur_path, shape_predictor_path)
     predictor = dlib.shape_predictor(predictor_path)
     # load the input image, resize it, and convert it to grayscale
     # image = cv2.imread(args["image"])

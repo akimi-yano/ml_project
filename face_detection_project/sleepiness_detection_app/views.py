@@ -19,6 +19,8 @@ from django.http import HttpResponse
 from wsgiref.util import FileWrapper
 from imutils.video import FileVideoStream
 
+from pathlib import Path
+
 def sleep_video(request):    
 
 # python detect_drowsiness.py --shape-predictor shape_predictor_68_face_landmarks.dat
@@ -51,8 +53,9 @@ def sleep_video(request):
     print("[INFO] loading facial landmark predictor...")
     detector = dlib.get_frontal_face_detector()
     
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    predictor_path = os.path.join(dir_path, "shape_predictor_68_face_landmarks.dat")
+    cur_path = str(Path.cwd())
+    shape_predictor_path = "face_detection_project/static/shape_predictor_68_face_landmarks.dat"
+    predictor_path = os.path.join(cur_path, shape_predictor_path)
     predictor = dlib.shape_predictor(predictor_path)
 
 

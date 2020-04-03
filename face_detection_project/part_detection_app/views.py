@@ -14,6 +14,8 @@ from wsgiref.util import FileWrapper
 from imutils.video import FileVideoStream
 import time
 
+from pathlib import Path
+
 
 def part_image(request):
 
@@ -30,8 +32,9 @@ def part_image(request):
     detector = dlib.get_frontal_face_detector()
     # predictor = dlib.shape_predictor(args["shape_predictor"])
     
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    predictor_path = os.path.join(dir_path, "shape_predictor_68_face_landmarks.dat")
+    cur_path = str(Path.cwd())
+    shape_predictor_path = "face_detection_project/static/shape_predictor_68_face_landmarks.dat"
+    predictor_path = os.path.join(cur_path, shape_predictor_path)
     predictor = dlib.shape_predictor(predictor_path)
 
     # load the input image, resize it, and convert it to grayscale
@@ -121,8 +124,9 @@ def part_video(request):
     detector = dlib.get_frontal_face_detector()
     # predictor = dlib.shape_predictor(args["shape_predictor"])
     
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    predictor_path = os.path.join(dir_path, "shape_predictor_68_face_landmarks.dat")
+    cur_path = str(Path.cwd())
+    shape_predictor_path = "face_detection_project/static/shape_predictor_68_face_landmarks.dat"
+    predictor_path = os.path.join(cur_path, shape_predictor_path)
     predictor = dlib.shape_predictor(predictor_path)
     
     

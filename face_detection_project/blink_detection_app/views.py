@@ -4,6 +4,8 @@ from django.shortcuts import render, HttpResponse
 # python detect_blinks.py --shape-predictor shape_predictor_68_face_landmarks.dat --video blink_detection_demo.mp4
 # python detect_blinks.py --shape-predictor shape_predictor_68_face_landmarks.dat
 
+from pathlib import Path
+
 # import the necessary packages
 from scipy.spatial import distance as dist
 from imutils.video import FileVideoStream
@@ -64,8 +66,9 @@ def blink_video(request):
     detector = dlib.get_frontal_face_detector()
     # predictor = dlib.shape_predictor(args["shape_predictor"])
 
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    predictor_path = os.path.join(dir_path, "shape_predictor_68_face_landmarks.dat")
+    cur_path = str(Path.cwd())
+    shape_predictor_path = "face_detection_project/static/shape_predictor_68_face_landmarks.dat"
+    predictor_path = os.path.join(cur_path, shape_predictor_path)
     predictor = dlib.shape_predictor(predictor_path)
 
     # grab the indexes of the facial landmarks for the left and
