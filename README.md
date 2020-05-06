@@ -1,5 +1,5 @@
 # Face Labo - Interactive Computer Vision 
-## http://54.183.232.224/
+## Deployed: http://54.183.232.224/
 
 A machine learning / computer vision web app that can count how many times a person blinks / winks or whether the person is sleepy from uploaded photos & videos.
 
