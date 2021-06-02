@@ -9,5 +9,5 @@ opencv-python==4.2.0.32
 pytz==2019.3
 scipy==1.4.1
 sqlparse==0.3.1
-urllib3==1.25.8
+urllib3==1.26.5
 
