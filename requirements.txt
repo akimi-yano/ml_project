@@ -4,7 +4,7 @@ Django==2.2
 dlib==19.19.0
 idna==2.9
 imutils==0.5.3
-numpy==1.18.2
+numpy==1.22.0
 opencv-python==4.2.0.32
 pytz==2019.3
 scipy==1.4.1
